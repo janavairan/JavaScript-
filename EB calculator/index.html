@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function calc() {
+            a=document.getElementById("input").value;
+            document.getElementById("input").value =''
+            if (a<=100) {
+                amt=a*0
+            }
+            else if(a>100 & a<=200) {
+                amt = 100*0 + (a-100)*1 
+            }
+            else if(a>200 & a<=300){
+                amt = 100*0 + 100*1 + (a-200)*2
+            }
+            else if(a>300 & a<=400){
+                amt=100*0 + 100*1 + 100*2 +(a-300)*2.5
+            }
+            else  {
+                amt = 100*0 + 100*1 + 100*2 + 100*2.5 +(a-400)*5
+                
+            }
+            document.getElementById("result").value = amt;
+        }
+    </script>
+    <label>No of units :</label>
+    <input type="number" placeholder="units" id="input" style="height: 20px; width: 15%;">
+    <br>
+    <button onclick="calc()" class="button" style=" height: 27px;width: 7%;margin-left: 350px;">submit</button>
+    <br>
+    <label>Total amount:</label>
+    <input type="number" placeholder="amount" id="result"style="height: 20px; width: 15%;" >
+</body>
+</html>

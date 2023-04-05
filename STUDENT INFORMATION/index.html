@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+NAME: <input type="text" id="name" >
+<br>
+<br>
+AGE: <input type="number" id="age">
+<br>
+<br>
+EMAIL: <input type="text" id="email">
+<br>
+<br>
+PHONE NUMBER: <input type="number" id="phone">
+<br>
+<br>
+<button onclick="save()" id="save">SAVE</button>
+    <table>
+        <tr>
+            <th>NAME</th>
+            <th>AGE</th>
+            <th>EMAIL</th>
+            <th>PHONE NUMBER</th>
+            <th>EDIT</th>
+            <th>DELETE</th>
+
+            <tbody id="body"></tbody>
+        </tr>
+    </table>
+    <script>
+        var student =[
+            {
+                name:"jana",
+                age:"28",
+                email:"jana@gmail.com",
+                mobile:"9500895411"
+            }
+            ,
+            {
+                name:"ram",
+                age:"25",
+                email:"ram@gmail.com",
+                mobile:"997602518"
+            }
+            ,
+            {
+                name:"aathi",
+                age:"55",
+                email:"aat@gmail.com",
+                mobile:"94435555"
+            }
+        ]
+
+    var temp=[];
+    for (let index = 0; index < student.length; index++) {
+      temp.push(document.getElementById("body").innerHTML =`<tr><td>`+student[index].name+`</td><td>`+student[index].age+`</td><td>`+student[index].email+`</td><td>`+student[index].mobile+`</td><td><button onclick="Edit(`+index+`)">EDIT</button></td><td><button onclick="Delete(`+index+`)">DELETE</button></td></tr>`);
+    }
+    document.getElementById("body").innerHTML=temp.join ("");
+    function Delete(index){
+        var temp1=[];
+        student.splice(index,1)
+        for (var index = 0; index < student.length; index++) {
+      temp1.push(document.getElementById("body").innerHTML =`<tr><td>`+student[index].name+`</td><td>`+student[index].age+`</td><td>`+student[index].email+`</td><td>`+student[index].mobile+`</td><td><button onclick="Edit(`+index+`)">EDIT</button></td><td><button onclick="Delete(`+index+`)">DELETE</button></td></tr>`);
+    }
+    document.getElementById("body").innerHTML=temp1.join ("");
+    }
+    var editing=jana
+    var isediting=false
+    function Edit(index){
+        editing=index
+        isediting=true
+        document.getElementById("save").innerHTML="update"
+        document.getElementById("name").value=student[index].name
+        document.getElementById("age").value=student[index].age
+        document.getElementById("email").value=student[index].email
+        document.getElementById("phone").value=student[index].mobile
+    }
+    function save(){
+        var temp2=[]
+        var ADDNEW={
+            name:document.getElementById("name").value,
+            age:document.getElementById("age").value,
+            email:document.getElementById("email").value,
+            mobile:document.getElementById("phone").value
+        }
+        if (isediting) {
+            student[editing]=ADDNEW;
+        } else {
+            student.push(ADDNEW)
+        }
+        for (var index = 0; index < student.length; index++) {
+      temp2.push(document.getElementById("body").innerHTML =`<tr><td>`+student[index].name+`</td><td>`+student[index].age+`</td><td>`+student[index].email+`</td><td>`+student[index].mobile+`</td><td><button onclick="Edit(`+index+`)">EDIT</button></td><td><button onclick="Delete(`+index+`)">DELETE</button></td></tr>`);
+    }
+    document.getElementById("body").innerHTML=temp2.join ("");
+    document.getElementById("save").innerHTML=ADDNEW;
+    }
+    </script>
+</body>
+</html>

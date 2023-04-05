@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+</head>
+<body>
+    <div class="header">
+    <div><button onclick="home()"><i class="fa-solid fa-house"></i></button></div>
+    <div><button onclick="shopping()"><i class="fa-solid fa-cart-shopping"></i></button>
+        <span id="cartcount"></span></div>
+     
+    </div>
+    </div>
+    <div class="body" id="BODY">
+    </div>
+    <div id="cart"></div>
+    <script>
+        var product =[{
+            Image:"https://th.bing.com/th/id/OIP.RzRHAUUfUTGFPDqmeD_4mQHaHa?pid=ImgDet&rs=1",
+            name: "I PHONE 13 PRO MAX",
+            price: 52000 
+                       
+        },
+        {
+            Image:"https://th.bing.com/th/id/OIP.RzRHAUUfUTGFPDqmeD_4mQHaHa?pid=ImgDet&rs=1",
+            name: "I PHONE 13 PRO MAX",
+            price: 52000            
+        }
+    ]
+        var temp=[]
+        for (let index = 0; index < product.length; index++) {
+            temp.push(`<div>
+                 <img src=`+product[index].Image+`><div>`+product[index].name+`</div><div>`+product[index].price+`</div><div> <button onclick="addcart(`+index+`)">ADD TO CART</button></div>
+        </div>`)
+        }
+        document.getElementById("BODY").innerHTML=temp .join("")
+         var temp2=[];
+         function addcart(index){
+            var NEW = {
+                Image:product[index].Image,
+                name:product[index].name,
+                price:product[index].price
+            }
+            temp2.push(NEW)
+            document.getElementById("cartcount").innerHTML=temp2.length;
+         }
+        
+         function shopping(){
+            var temp3=[];
+            var count=0
+            
+            for (let index = 0; index < temp2.length; index++) {
+                temp3.push(`<div>
+                 <img src=`+temp2[index].Image+`><div>`+temp2[index].name+`</div><div>`+temp2[index].price+`</div><div> <button onclick="Remove(`+index+`)">REMOVE FROM CART</button></div>
+        </div>`)  
+        count=count+Number(product[index].price)
+            }
+            document.getElementById("BODY").innerHTML=temp3;
+            document.getElementById("cart").innerHTML=count
+
+         }
+         function Remove(index){
+            temp2.splice(index,1)
+            shopping();
+            document.getElementById("cartcount").innerHTML=temp2.length;
+            if(temp2==0){
+                document.getElementById("cartcount").innerHTML="";}
+         }
+         
+
+    </script>
+</body>
+</html>
